@@ -2,6 +2,7 @@ class HikesController < ApplicationController
     def index
         @hikes = Hike.where(user_id:current_user.id)
         @user = User.find(current_user.id)
+        @hikes_joined = Hike.all.where.not(user_id:current_user.id)
     end
 
     def create
