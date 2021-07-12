@@ -1,0 +1,84 @@
+// Place all the styles related to the Hikes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// #hike_form{
+//     border: solid 3px black;
+//     width: 500px
+// }
+
+#jumbotron{
+    background: url(https://skyline.ie/images/website_gouganne_barra_2_new_20.jpg) no-repeat; background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+}
+
+.display-3{
+    color: white;
+}
+
+.nav_buttons{
+    margin: 10px 10px 0px 0px;
+}
+
+#account{
+    width: 175px;
+    height: 40px;
+}
+
+#guide{
+    width: 150px;
+    height: 40px;
+}
+
+#new_hike{
+    width: 150px;
+    height: 40px;
+}
+
+#logout_head{
+    width: 150px;
+    height: 40px;
+}
+
+.main{
+    display: flex;
+}
+
+.card{
+    width: 500px;
+}
+
+label{
+    text-decoration: underline; font-weight: bolder;
+}
+
+.hike_table{
+    width:1500px;
+    // background-color: black;
+    // background: url(https://wallpaperaccess.com/full/1489194.jpg)  no-repeat; background-size: cover;
+    background: url(https://c0.wallpaperflare.com/preview/149/794/500/bark-tree-texture-nature.jpg)  no-repeat; background-size: cover;
+}
+
+#table_headers{
+    color: white;
+    background-color: black;
+    font-weight: bolder;
+    opacity: 0.65;
+}
+
+#table_data{
+    font-weight: bolder;
+    font-size: large;
+    color: white
+}
+
+#hike{
+    height:50px;
+    width: 100px;
+}
+
+.find_header{
+    display: flex;
+    justify-content: space-between;
+}

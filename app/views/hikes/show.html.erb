@@ -1,0 +1,13 @@
+<h1><%= @hike.description %></h1>
+<h2><%= @hike.trail %></h2>
+<h2><%= @hike.city %></h2>
+<h2><%= @hike.state %></h2>
+<h2><%= @hike.hike_date.strftime("%m/%d/%Y") %></h2>
+<img src="<%= @hike.image_url %>" alt="Picture of the hike"><br>
+<a href="/dashboard" role="button" class="btn btn-warning">Back to Dashboard</a>
+<a href="/logout" role="button" class="btn btn-danger">Logout</a>
+
+<h2>Hikers attending this hike:</h2>
+<% @hike.users_joined.each do |user| %>
+<h3><%= user.first_name %> <%= user.last_name %></h3>
+<% end %>
