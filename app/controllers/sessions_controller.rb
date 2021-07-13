@@ -2,19 +2,19 @@ class SessionsController < ApplicationController
     skip_before_action :require_login
     def new 
         user = User.create(user_params)
-            if user.errors 
-                flash[:errors] = user.errors.full_messages
-                redirect_to '/'
-            else
+            if user.valid?
                 session[:user_id] = user.id 
                 redirect_to '/dashboard'
+            else
+                flash[:errors] = user.errors.full_messages
+                redirect_to '/'
             end
         end
     
         def show 
         @user = User.find_by_email(user_params[:email]).try(:authenticate, user_params[:password])
             if @user
-                session[:user_id] = @user.id 
+                session[:user_id] = @user.id
                 redirect_to '/dashboard'
             else
                 flash[:login] = ["Account not found"]

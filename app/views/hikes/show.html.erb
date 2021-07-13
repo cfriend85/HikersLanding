@@ -10,7 +10,7 @@
     <div class="hike_head">
         <h1 class="display-3"><%= @hike.trail %></h1>
             <div>
-                <a href="/dashboard" role="button" class="btn btn-warning">Back to Dashboard</a>
+                <a href="/dashboard" role="button" class="btn btn-warning">Dashboard</a>
                 <a href="/logout" role="button" class="btn btn-danger">Logout</a>
             </div>
     </div>
@@ -25,11 +25,11 @@
         </div>
         <div id="jumbo_foot">
         <hr class="my-2">
-            <h1><img src="<%= @hike.image_url %>" class="trail_pic" alt="Picture of the hike"></h1> 
+            <img src="<%= @hike.image_url %>" class="trail_pic" alt="Picture of the hike">
                 <p class="lead">
                 </p>
-                <div class="list-group" style="width:500px; margin-left: 375px;">
-                    <h2 style="color: white">Hikers attending this hike:</h2>
+                <div class="list-group" style="width:500px; margin-left: 225px;">
+                    <h2 style="color: white">Hikers attending:</h2>
                     <% @hike.users_joined.each do |user| %>
                     <a href="/show/<%= user.id %>" class="list-group-item list-group-item-action list-group-item-success"><%= user.first_name %> <%= user.last_name %></a>
                     <% end %>

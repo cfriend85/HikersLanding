@@ -1,7 +1,7 @@
 <body style="background: url(https://www.hikingupward.com/PNF/RoanMountain/images/061017/IMG_5372.jpg) no-repeat center fixed; background-size: cover;">
 <div class="user_container">
     <% if current_user.id === @user.id %>
-    <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px">
+    <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px;">
         <form action="/edit/<%= @user.id %>" method="POST">
             <input type="hidden" name="_method" value="patch">
             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

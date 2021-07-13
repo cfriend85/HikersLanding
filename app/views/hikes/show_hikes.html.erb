@@ -7,7 +7,7 @@
     <title>Find a Hike to Join</title>
 </head>
 <body style="background: url(https://c0.wallpaperflare.com/preview/149/794/500/bark-tree-texture-nature.jpg)  no-repeat; background-size: cover; padding-top: 50px;">
-    <div class="hike_table" id="find_hike_table" style="opacity: 0.85">
+    <div class="find_hike_table" id="find_hike_table" style="opacity: 0.85">
         <table class="table table-hover">
             <thead>
             <div class="find_header"><h2 style="color: ivory; font-weight:bolder">Hikes to Join</h2> <a href="/dashboard" role="button" class="btn btn-warning" style="margin-left: 1100px;">Dashboard</a> <a href="/logout" role="button" class="btn btn-danger" data-method="delete">Logout</a></div>
@@ -25,18 +25,19 @@
                 </tr>
             </thead>
     <% @hikes.each do |hike| %>
-    <% if not hike.users_joined.include?(current_user) %>
+        <% if hike.hike_date > @today %>
+            <% if not hike.users_joined.include?(current_user) %>
             <tbody>
                 <tr id="table_data">
                     <td><a id="table_data" href="/show/hike/<%= hike.id %>" role="button" class="btn btn-warning"><%= hike.description %></a></td>
                     <td><a href="https://www.google.com/search?q=+<%= hike.trail %>+<%= hike.city %>" target="_blank" role="button" class="btn btn-secondary"><%= hike.trail %></a></td>
                     <td><a href="https://www.google.com/search?q=+<%= hike.city %>+<%= hike.state %>" role="button" target="_blank" class="btn btn-primary"><%= hike.city %></a></td>
                     <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
-                    <td><%= hike.hike_date.strftime("%m/%d/%Y") %></td>
-                    <td><%= hike.time %></td>
+                    <td><a href="#" role="button" class="btn btn-warning" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
+                    <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
                     <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>"></td>
                     <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
-                    <td class="bg-dark text-white" style="opacity:0.60;"><%= hike.user.first_name %> <%= hike.user.last_name %></td>
+                    <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
                     <% if not hike.users_joined.include?(current_user) %>
                     <td><a href="/join/<%= hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a></td>
                     <% else %>
@@ -45,6 +46,7 @@
                     <td>
                 </tr>
             </tbody>
+            <% end %>
             <% end %>
     <% end %>
     </table>

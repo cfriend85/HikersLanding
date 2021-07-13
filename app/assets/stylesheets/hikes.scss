@@ -53,15 +53,8 @@
     height: 40px;
 }
 
-.main{
-    display: flex;
-    background: url(https://c0.wallpaperflare.com/preview/149/794/500/bark-tree-texture-nature.jpg)  no-repeat; background-size: cover;
-}
-
 .card{
     width: 500px;
-    background-color:black; 
-    opacity: 0.75;
 }
 
 .card-title, label{
@@ -71,7 +64,18 @@
 
 .hike_table{
     width:1500px;
+    // background: url(https://www.besthealthmag.ca/wp-content/uploads/2017/04/West-Coast-Trail.jpg)  no-repeat; background-size: cover;
+    background: url(https://th.bing.com/th/id/R.2821ab58e1aa751b584ca4933e314c82?rik=Jn03Mx8PyUjE4w&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f3%2f2%2f3%2f655656.jpg&ehk=toQZI1ubBwrY8BPpzPzZCh9RSlH8LWGkEIwCbftqsmk%3d&risl=&pid=ImgRaw)  no-repeat; background-size: cover;
+    // background: url(https://images-ext-2.discordapp.net/external/jwEHDVo7l46c70_UxKujKHXp_o3mPhK9xh8zTSHFcEE/https/storage.googleapis.com/webdesignledger.pub.network/LaT/edd/2016/02/dark-grunge-textures-3.jpg?width=710&height=473)  no-repeat; background-size: cover;
+}
+
+.find_hike_table{
+    width:1500px;
     background: url(https://media.istockphoto.com/vectors/wood-texture-natural-dark-gray-wooden-background-vector-id1221709804?k=6&m=1221709804&s=612x612&w=0&h=-sezKaYAmDd8WT5U27ViElxDmjzZ6h7dFZaUejh0P2s=)  no-repeat; background-size: cover;
+}
+
+.main{
+    display: flex;
 }
 
 #table_headers{
@@ -126,6 +130,8 @@ background: radial-gradient(circle, rgba(56,191,14,0.8267682072829132) 0%, rgba(
 
 .trail_pic{
     margin-left: 170px;
+    height: 500px;
+    width: 750px;
 }
 
 

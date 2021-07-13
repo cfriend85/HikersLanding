@@ -12,7 +12,7 @@
 <div class="main">
     <div class="card">
         <img class="card-img-top" src="https://menla.org/wp-content/uploads/2018/03/Hiking-Trail-No-People-2-800x800.jpg" alt="Card image cap">
-        <div class="card-body" style="background-color:black; opacity: 0.75;">
+        <div class="card-body" style="background-color:black; opacity: 0.75">
             <h4 class="card-title">Create a new Hike!</h4>
                 <form action="/create/hike" method="POST" id="hike_form">
                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -73,7 +73,8 @@
             <th>Actions</th>
                 </tr>
                     </thead>
-        <% @hikes.each do |hike| %>
+        <% @future_hikes.each do |hike| %>
+            <% if current_user.id == hike.user.id %>
             <tbody>
             <tr id="table_data">
                 <td><a id="table_data" href="/show/hike/<%= hike.id %>" role="button" class="btn btn-warning"><%= hike.description %></a></td>
@@ -82,7 +83,7 @@
                 <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
                 <td><a href="#" role="button" class="btn btn-warning" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
                 <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
-                <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>"></td>
+                <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
                 <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
                 <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
                 <% if not hike.users_joined.include?(current_user) %>
@@ -91,13 +92,14 @@
                 <td><a href="/unjoin/<%= hike.id %>" role="button" class="btn btn-danger" data-method="delete">Un-Join</a></td>
                 <% end %>
                 <td>
+                <% end %>
         </tbody>
 <% end %>
                         </table>
 
     <table class="table table-hover">
         <thead>
-            <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Hikes You've Joined</h2>
+            <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Upcomming Hikes You've Joined</h2>
             <tr id="table_headers">
                 <th>Description</th>
                 <th>Trail</th>
@@ -112,7 +114,8 @@
             </tr>
         </thead>
 <% @hikes_joined.each do |hike| %>
-    <% if hike.users_joined.include?(current_user) %>
+    <% if hike.hike_date > @today %>
+        <% if hike.users_joined.include?(current_user) %>
         <tbody>
             <tr id="table_data">
                 <td><a id="table_data" href="/show/hike/<%= hike.id %>" role="button" class="btn btn-warning"><%= hike.description %></a></td>
@@ -121,7 +124,7 @@
                 <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
                 <td><a href="#" role="button" class="btn btn-warning" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
                 <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
-                <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>"></td>
+                <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
                 <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
                 <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
                 <% if not hike.users_joined.include?(current_user) %>
@@ -132,9 +135,14 @@
                 <td>
         </tbody>
         <% end %>
+        <% end %>
 <% end %>
 </table>
 </div>
+
+
+
+
 
 
 

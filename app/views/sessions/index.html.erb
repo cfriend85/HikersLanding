@@ -10,8 +10,8 @@
     <div class="registration">
         <h6 class="label">Your next journey begins with the first step.....</h6>
             <% if flash[:errors] %>
-            <% flash[:errors].each do |e| %>
-        <p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
+                <% flash[:errors].each do |e| %>
+                    <p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
             <% end %>
         <% end %>
         <h1 class="label">Registration</h1>

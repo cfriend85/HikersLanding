@@ -1,6 +1,7 @@
 class HikesController < ApplicationController
     def index
-        @hikes = Hike.where(user_id:current_user.id)
+        @today = Date.today()
+        @future_hikes = Hike.where('hike_date>?', @today)
         @user = User.find(current_user.id)
         @hikes_joined = Hike.all.where.not(user_id:current_user.id)
     end
@@ -17,6 +18,7 @@ class HikesController < ApplicationController
 
     def show_hikes
         @hikes = Hike.where.not(users_joined:current_user.id)
+        @today = Date.today()
     end
 
     def display_guide
