@@ -1,9 +1,9 @@
 
 <div class="jumbotron jumbotron-fluid" id="jumbotron">
-        <h1 class="display-3">Welcome, <%= current_user.first_name %>!</h1>
+        <h1 class="display-3" style="color: white">Welcome, <%= current_user.first_name %>!</h1>
         <div class="nav_buttons">
-            <a href="/logout" role="button" class="btn btn-primary" id="account">Edit your Account</a>
-            <a href="/logout" role="button" class="btn btn-warning" id="guide">Hiking Guide</a>
+            <a href="/show/<%= current_user.id %>" role="button" class="btn btn-primary" id="account">Edit your Account</a>
+            <a href="/guide" role="button" class="btn btn-warning" id="guide">Hiking Guide</a>
             <a href="/find/hikes" role="button" class="btn btn-success" id="new_hike">Find a new Hike!</a>
             <a href="/logout" role="button" class="btn btn-danger" id="logout_head">Logout</a>
         </div>
@@ -12,7 +12,7 @@
 <div class="main">
     <div class="card">
         <img class="card-img-top" src="https://menla.org/wp-content/uploads/2018/03/Hiking-Trail-No-People-2-800x800.jpg" alt="Card image cap">
-        <div class="card-body" style="background-color:black; opacity: 0.60;">
+        <div class="card-body" style="background-color:black; opacity: 0.75;">
             <h4 class="card-title">Create a new Hike!</h4>
                 <form action="/create/hike" method="POST" id="hike_form">
                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -59,7 +59,7 @@
                                 <div class="hike_table">
                             <table class="table table-hover">
                         <thead>
-                    <h2 style="color: ivory; font-weight:bolder">Your Current Hikes</h2>
+                    <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Your Current Hikes</h2>
                 <tr id="table_headers">
             <th>Description</th>
             <th>Trail</th>
@@ -84,7 +84,7 @@
                 <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
                 <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>"></td>
                 <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
-                <td class="bg-dark text-white" style="opacity:0.60;"><%= hike.user.first_name %> <%= hike.user.last_name %></td>
+                <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
                 <% if not hike.users_joined.include?(current_user) %>
                 <td><a href="/join/<%= hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a></td>
                 <% else %>
@@ -97,7 +97,7 @@
 
     <table class="table table-hover">
         <thead>
-            <h2 style="color: ivory; font-weight:bolder">Hikes You've Joined!</h2>
+            <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Hikes You've Joined</h2>
             <tr id="table_headers">
                 <th>Description</th>
                 <th>Trail</th>
@@ -123,7 +123,7 @@
                 <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
                 <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>"></td>
                 <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
-                <td class="bg-dark text-white" style="opacity:0.60;"><%= hike.user.first_name %> <%= hike.user.last_name %></td>
+                <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
                 <% if not hike.users_joined.include?(current_user) %>
                 <td><a href="/join/<%= hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a></td>
                 <% else %>

@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Hike to Join</title>
 </head>
-<body style="background: url(https://c0.wallpaperflare.com/preview/149/794/500/bark-tree-texture-nature.jpg)  no-repeat; background-size: cover;">
-    <div class="hike_table">
+<body style="background: url(https://c0.wallpaperflare.com/preview/149/794/500/bark-tree-texture-nature.jpg)  no-repeat; background-size: cover; padding-top: 50px;">
+    <div class="hike_table" id="find_hike_table" style="opacity: 0.85">
         <table class="table table-hover">
             <thead>
-            <div class="find_header"><h2 style="color: ivory; font-weight:bolder">Hikes to Join!</h2> <a href="/dashboard" role="button" class="btn btn-warning" style="margin-left: 1100px;">Dashboard</a> <a href="/logout" role="button" class="btn btn-danger" data-method="delete">Logout</a></div>
+            <div class="find_header"><h2 style="color: ivory; font-weight:bolder">Hikes to Join</h2> <a href="/dashboard" role="button" class="btn btn-warning" style="margin-left: 1100px;">Dashboard</a> <a href="/logout" role="button" class="btn btn-danger" data-method="delete">Logout</a></div>
                 <tr id="table_headers">
                     <th>Description</th>
                     <th>Trail</th>
@@ -43,6 +43,7 @@
                     <td><a href="/unjoin/<%= hike.id %>" role="button" class="btn btn-danger" data-method="delete">Un-Join</a></td>
                     <% end %>
                     <td>
+                </tr>
             </tbody>
             <% end %>
     <% end %>

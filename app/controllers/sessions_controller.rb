@@ -21,6 +21,17 @@ class SessionsController < ApplicationController
                 redirect_to '/'
             end
         end
+
+        def update
+            @user = User.find(params[:id])
+        end
+
+        def update_user 
+        @user = User.find(params[:id])
+        @user.update(user_params)
+        @user.save
+        redirect_to '/dashboard'
+        end
     
         def destroy
             reset_session

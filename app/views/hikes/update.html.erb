@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background: url(https://st2.depositphotos.com/3701845/9185/i/450/depositphotos_91850238-stock-photo-blurred-grass-out-of-focus.jpg)no-repeat; background-size: cover;">
+    <div class="hike_head">
+        <h1 class="display-3"><%= @hike.trail %></h1>
+            <div>
+                <a href="/dashboard" role="button" class="btn btn-warning">Back to Dashboard</a>
+                <a href="/logout" role="button" class="btn btn-danger">Logout</a>
+            </div>
+    </div>
+    
+    
+    <div class="jumbotron" id="hike_page">
+        <div id="hike_details">
+            <h1 class="display-6"><%= @hike.description %></h1>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.city %>, <%= @hike.state %></h5>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.hike_date.strftime("%m/%d/%Y") %></h5>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.time %></h5>
+        </div>
+        <div id="jumbo_foot">
+        <hr class="my-2">
+            <h1><img src="<%= @hike.image_url %>" class="trail_pic" alt="Picture of the hike"></h1> 
+                <div style="margin-left: 250px;">
+                    <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px">
+                        
+                        <form action="/edit/hike/<%= @hike.id %>" method="POST">
+                            <input type="hidden" name="_method" value="patch">
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Description</label>
+                                        <input type="text" class="form-control" name="hike[description]" placeholder="<%= @hike.description %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Trail</label>
+                                    <input type="text" class="form-control" name="hike[trail]" placeholder="<%= @hike.trail %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">City</label>
+                                    <input type="text" class="form-control" name="hike[city]" placeholder="<%= @hike.city %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">State</label>
+                                    <input type="text" class="form-control" name="hike[state]" placeholder="<%= @hike.state %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Date</label>
+                                    <input type="date" class="form-control" name="hike[hike_date]" placeholder="<%= @hike.hike_date %>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Time</label>
+                                    <input type="text" class="form-control" name="hike[time]" placeholder="<%= @hike.time %>">
+                                </div>
+                                    <input type="submit" value="Commit Changes" class="btn btn-warning" style="margin: 10px 0px 0px 150px;">
+                        </form>
+    </div>
+</div>
+</body>
+</html>

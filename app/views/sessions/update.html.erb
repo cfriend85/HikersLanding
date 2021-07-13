@@ -1,0 +1,54 @@
+<body style="background: url(https://www.hikingupward.com/PNF/RoanMountain/images/061017/IMG_5372.jpg) no-repeat center fixed; background-size: cover;">
+<div class="user_container">
+    <% if current_user.id === @user.id %>
+    <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px">
+        <form action="/edit/<%= @user.id %>" method="POST">
+            <input type="hidden" name="_method" value="patch">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="form-group">
+            <label for="formGroupExampleInput">First Name</label>
+            <input type="text" class="form-control" name="user[first_name]" placeholder="<%= @user.first_name %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Last Name</label>
+                <input type="text" class="form-control" name="user[last_name]" placeholder="<%= @user.last_name %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Email</label>
+                <input type="text" class="form-control" name="user[email]" placeholder="<%= @user.email %>">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Password</label>
+                <input type="password" class="form-control" name="user[password]" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Confirm Password</label>
+                <input type="password" class="form-control" name="user[password_confirmation]" placeholder="Confirm your Password">
+            </div>
+            <input type="submit" value="Commit Changes" class="btn btn-warning" style="margin: 10px 0px 0px 150px;">
+        </form>
+    </div>
+    <% else %>
+    <div class="jumbotron">
+        <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem;">
+            <div class="card-header"><%= @user.first_name %> <%= @user.last_name %></div>
+            <div class="card-header"><%= @user.email %></div>
+                <div class="card-body">
+                    <h4 class="card-title">Users Hikes:</h4>
+                        <% @user.hikes.each do |hike| %>
+                            <div class="list-group" style="width:300px; padding: 5px;">
+                                <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-dark"><%= hike.description %></a>
+                            </div>
+                        <% end %>
+                </div>
+        </div>
+</div>
+<% end %>
+<div style="margin-left: 125px;">
+        <a href="/dashboard" role="button" class="btn btn-warning">Back to Dashboard</a>
+        <a href="/logout" role="button" class="btn btn-danger">Logout</a>
+</div>
+</div>
+</body>
+
+

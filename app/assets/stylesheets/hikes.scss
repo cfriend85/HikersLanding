@@ -13,8 +13,19 @@
     height: 250px;
 }
 
-.display-3{
+.display-6{
     color: white;
+    display: flex;
+}
+
+#hike_details{
+    display: flex;
+    justify-content: space-around;
+    color: white
+}
+
+.hike_lead{
+    margin-top: 10px;
 }
 
 .nav_buttons{
@@ -29,6 +40,7 @@
 #guide{
     width: 150px;
     height: 40px;
+    color: white
 }
 
 #new_hike{
@@ -48,6 +60,8 @@
 
 .card{
     width: 500px;
+    background-color:black; 
+    opacity: 0.75;
 }
 
 .card-title, label{
@@ -68,7 +82,6 @@
 }
 
 #table_data{
-    font-weight: bolder;
     font-size: large;
     color: white
 }
@@ -81,4 +94,67 @@
 .find_header{
     display: flex;
     justify-content: space-between;
+    padding: 5px;
+}
+
+#find_hike_table{
+    margin: auto;
+}
+
+.hike_head{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: solid 5px black;
+    background: rgb(56,191,14);
+background: radial-gradient(circle, rgba(56,191,14,0.8267682072829132) 0%, rgba(244,244,244,0.16850490196078427) 50%, rgba(16,93,38,0.9724264705882353) 100%);
+}
+
+#hike_page{
+    padding: 10px;
+    background-color: darkslategray;
+    margin: 10px 50px 0px 50px;
+}
+
+#hike_page_lead{
+    margin-top: 15px;
+}
+
+#jumbo_foot{
+    display: flex;
+}
+
+.trail_pic{
+    margin-left: 170px;
+}
+
+
+.user_container{
+    margin: 250px 0px 0px 650px;
+}
+
+.hiking_guide{
+    padding: 10px;
+}
+
+
+
+#guide_imgs{
+    height: 100px;
+    padding: 10px;
+}
+
+.guide_nav{
+    padding: 50px 50px 50px 0px;
+}
+
+#guide_jumbotron{
+    background-color: darkslategray;
+    opacity: 0.85;
+    padding: 10px;
+}
+
+
+#hike_changer{
+    margin-left: 170px;
 }

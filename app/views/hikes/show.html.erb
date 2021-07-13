@@ -1,17 +1,51 @@
-<h1><%= @hike.description %></h1>
-<h2><%= @hike.trail %></h2>
-<h2><%= @hike.city %>, <%= @hike.state %></h2>
-<h2><%= @hike.hike_date.strftime("%m/%d/%Y") %></h2>
-<h2><%= @hike.time %></h2>
-<h2><img src="<%= @hike.image_url %>" alt="Picture of the hike"></h2>
-
-<a href="/dashboard" role="button" class="btn btn-warning">Back to Dashboard</a>
-<a href="/logout" role="button" class="btn btn-danger">Logout</a>
-
-<h2>Hikers attending this hike:</h2>
-<% @hike.users_joined.each do |user| %>
-<h3><%= user.first_name %> <%= user.last_name %></h3>
-<% end %>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background: url(https://st2.depositphotos.com/3701845/9185/i/450/depositphotos_91850238-stock-photo-blurred-grass-out-of-focus.jpg)no-repeat; background-size: cover;">
+    <div class="hike_head">
+        <h1 class="display-3"><%= @hike.trail %></h1>
+            <div>
+                <a href="/dashboard" role="button" class="btn btn-warning">Back to Dashboard</a>
+                <a href="/logout" role="button" class="btn btn-danger">Logout</a>
+            </div>
+    </div>
+    
+    
+    <div class="jumbotron" id="hike_page">
+        <div id="hike_details">
+            <h1 class="display-6"><%= @hike.description %></h1>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.city %>, <%= @hike.state %></h5>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.hike_date.strftime("%m/%d/%Y") %></h5>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.time %></h5>
+        </div>
+        <div id="jumbo_foot">
+        <hr class="my-2">
+            <h1><img src="<%= @hike.image_url %>" class="trail_pic" alt="Picture of the hike"></h1> 
+                <p class="lead">
+                </p>
+                <div class="list-group" style="width:500px; margin-left: 375px;">
+                    <h2 style="color: white">Hikers attending this hike:</h2>
+                    <% @hike.users_joined.each do |user| %>
+                    <a href="/show/<%= user.id %>" class="list-group-item list-group-item-action list-group-item-success"><%= user.first_name %> <%= user.last_name %></a>
+                    <% end %>
+                </div>
+        </div>
+            <div id="hike_changer">
+                <% if current_user.id == @hike.user.id %>
+                    <a href="/edit/<%= @hike.id %>" role="button" class="btn btn-info">Edit Hike</a>
+                    <a href="/delete/<%= @hike.id %>" role="button" class="btn btn-danger" data-method="delete">Delete Hike</a>
+                <% end %>
+            </div>
+        </div>
 </body>
+</html>
+
+
+
+
 
