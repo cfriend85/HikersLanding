@@ -31,8 +31,13 @@ class SessionsController < ApplicationController
         def update_user 
         @user = User.find(params[:id])
         @user.update(user_params)
-        @user.save
-        redirect_to '/dashboard'
+            if @user.valid?
+                @user.save
+                redirect_to '/dashboard'
+            else
+                flash[:errors] = @user.errors.full_messages
+                redirect_to "/dashboard"
+            end
         end
     
         def destroy

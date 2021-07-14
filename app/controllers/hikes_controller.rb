@@ -1,4 +1,5 @@
 class HikesController < ApplicationController
+    before_action :require_login
     def index
         @today = Date.today()
         @future_hikes = Hike.where('hike_date>?', @today)
@@ -7,13 +8,20 @@ class HikesController < ApplicationController
     end
 
     def create
-    hike = Hike.create(hike_params)
-    join = Join.create(user_id:current_user.id, hike_id:hike.id)
-    redirect_to '/dashboard'
+    @hike = Hike.create(hike_params)
+        if @hike.valid?
+            join = Join.create(user_id:current_user.id, hike_id: @hike.id)
+            redirect_to "/show/hike/#{@hike.id}"
+        else
+            flash[:errors] = @hike.errors.full_messages
+            redirect_to '/dashboard'
+        end
     end
 
     def show
+        @today = Date.today()
         @hike = Hike.find(params[:id])
+        @comments = Comment.where(hike_id: @hike.id)
     end
 
     def show_hikes
@@ -31,8 +39,13 @@ class HikesController < ApplicationController
     def update_hike
         @hike = Hike.find(params[:id])
         @hike.update(hike_params)
-        @hike.save
-        redirect_to "/show/hike/#{@hike.id}"
+        if @hike.valid?
+            @hike.save
+            redirect_to "/show/hike/#{@hike.id}"
+        else
+            flash[:errors] = @hike.errors.full_messages
+            redirect_to "/edit/#{@hike.id}"
+        end
     end
 
     def destroy

@@ -4,53 +4,108 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body style="background: url(https://st2.depositphotos.com/3701845/9185/i/450/depositphotos_91850238-stock-photo-blurred-grass-out-of-focus.jpg)no-repeat; background-size: cover;">
     <div class="hike_head">
         <h1 class="display-3"><%= @hike.trail %></h1>
             <div>
-                <a href="/dashboard" role="button" class="btn btn-warning">Dashboard</a>
-                <a href="/logout" role="button" class="btn btn-danger">Logout</a>
-            </div>
-    </div>
-    
-    
-    <div class="jumbotron" id="hike_page">
-        <div id="hike_details">
-            <h1 class="display-6"><%= @hike.description %></h1>
-            <h5 class="lead" id="hike_page_lead"><%= @hike.city %>, <%= @hike.state %></h5>
-            <h5 class="lead" id="hike_page_lead"><%= @hike.hike_date.strftime("%m/%d/%Y") %></h5>
-            <h5 class="lead" id="hike_page_lead"><%= @hike.time %></h5>
-        </div>
-        <div id="jumbo_foot">
-        <hr class="my-2">
+                <a href="/dashboard" role="button" class="btn btn-warning">Home</a>
+                    <a href="/logout" role="button" class="btn btn-danger">Logout</a>
+                        </div>
+                            </div>    
+                                <div class="jumbotron" id="hike_page">
+                                    <div id="hike_details">
+                                        <h1 class="display-6"><%= @hike.description %></h1>
+                                    <h5 class="lead" id="hike_page_lead"><%= @hike.city %>, <%= @hike.state %></h5>
+                                <h5 class="lead" id="hike_page_lead"><%= @hike.hike_date.strftime("%m/%d/%Y") %></h5>
+                            <h5 class="lead" id="hike_page_lead"><%= @hike.time %></h5>
+                        </div>
+                    <div id="jumbo_foot">
+                <hr class="my-2">
             <img src="<%= @hike.image_url %>" class="trail_pic" alt="Picture of the hike">
-                <p class="lead">
-                </p>
-                <div class="list-group" style="width:500px; margin-left: 225px;">
-                    <h2 style="color: white">Hikers attending:</h2>
-                    <% @hike.users_joined.each do |user| %>
-                    <a href="/show/<%= user.id %>" class="list-group-item list-group-item-action list-group-item-success"><%= user.first_name %> <%= user.last_name %></a>
-                    <% end %>
-                        <div id="join_hikes">
+        <p class="lead">
+    </p>
+<div class="list-group" style="width:500px; margin-left: 225px;">
+    <h2 style="color: white">Hikers attending:</h2>
+        <% @hike.users_joined.each do |user| %>
+            <a href="/show/<%= user.id %>" class="list-group-item list-group-item-action list-group-item-success"><%= user.first_name %> <%= user.last_name %></a>
+                <% end %>
+                    <div id="join_hikes">
+                        <% if @hike.hike_date > @today %>
                             <% if not @hike.users_joined.include?(current_user) %>
                                 <a href="/join/<%= @hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a>
-                            <% else %>
+                                    <% else %>
                                 <a href="/unjoin/<%= @hike.id %>" role="button" class="btn btn-danger" data-method="delete">Cancel</a>
                             <% end %>
-                        </div>
+                        <% end %>
+                    </div>
                 </div>
-        </div>
-            <div id="hike_changer">
-                <% if current_user.id == @hike.user.id %>
-                    <a href="/edit/<%= @hike.id %>" role="button" class="btn btn-info">Edit Hike</a>
-                    <a href="/delete/<%= @hike.id %>" role="button" class="btn btn-danger" data-method="delete">Delete Hike</a>
+            </div>
+        <div id="hike_changer">
+    <% if current_user.id == @hike.user.id %>
+<a href="/edit/<%= @hike.id %>" role="button" class="btn btn-info">Edit Hike</a>
+    <a href="/delete/<%= @hike.id %>" role="button" class="btn btn-danger" data-method="delete">Delete Hike</a>
+        <% end %>
+            <button type="button" class="btn bg-white" data-toggle="modal" data-target="#exampleModal3">Add a Comment</button>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalScrollable">Discussion Board</button>
+                    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModal3Label">Join the Discussion</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <div class="modal-body">
+                            <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 20rem;">
+                        <div class="card-body">
+                    <h6 class="card-title">Add your comment to the discussion board</h6>
+                <p class="card-text">
+            <form action="/add/comment/<%= @hike.id %>" method="POST">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="form-group">
+<% if flash[:errors] %>
+        <% flash[:errors].each do |e| %>
+            <p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
                 <% end %>
+                    <% end %>
+                        <label for="formGroupExampleInput">Comment</label>
+                            <input type="text" class="form-control" name="comment[content]" placeholder="Add your comment here">
+                                <input type="submit" value="Add your Comment" class="btn btn-warning" style="margin: 10px 0px 0px 50px;">
+                                    </div>
+                                        </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenteredLabel">Discussion Board</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                    </button>
+                        </div>
+                            <div class="modal-body bg-dark text-light" >
+                                <% @comments.each do |comment| %>
+                                    <p><%= comment.user.first_name %>(<%= comment.created_at.strftime("%m/%d/%Y") %>) says: "<%= comment.content %>"</p>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 </body>
-</html>
+    </html>
 
 
 

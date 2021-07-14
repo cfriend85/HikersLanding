@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   get '/edit/:id' => 'hikes#update'
   patch '/edit/hike/:id' => 'hikes#update_hike'
   delete '/delete/:id' => 'hikes#destroy'
-  
+
+  post '/add/comment/:id' => 'comments#create'
   
   post '/join/:id' => 'joins#create'
   delete '/unjoin/:id' => 'joins#destroy'
