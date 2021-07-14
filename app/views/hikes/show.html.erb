@@ -33,6 +33,13 @@
                     <% @hike.users_joined.each do |user| %>
                     <a href="/show/<%= user.id %>" class="list-group-item list-group-item-action list-group-item-success"><%= user.first_name %> <%= user.last_name %></a>
                     <% end %>
+                        <div id="join_hikes">
+                            <% if not @hike.users_joined.include?(current_user) %>
+                                <a href="/join/<%= @hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a>
+                            <% else %>
+                                <a href="/unjoin/<%= @hike.id %>" role="button" class="btn btn-danger" data-method="delete">Cancel</a>
+                            <% end %>
+                        </div>
                 </div>
         </div>
             <div id="hike_changer">

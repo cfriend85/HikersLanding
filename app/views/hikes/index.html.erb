@@ -4,7 +4,7 @@
         <div class="nav_buttons">
             <a href="/show/<%= current_user.id %>" role="button" class="btn btn-primary" id="account">Edit your Account</a>
             <a href="/guide" role="button" class="btn btn-warning" id="guide">Hiking Guide</a>
-            <a href="/find/hikes" role="button" class="btn btn-success" id="new_hike">Find a new Hike!</a>
+            <a href="/find/hikes" role="button" class="btn btn-success" id="new_hike">Find a new Hike</a>
             <a href="/logout" role="button" class="btn btn-danger" id="logout_head">Logout</a>
         </div>
 </div>
@@ -81,7 +81,7 @@
                 <td><a href="https://www.google.com/search?q=+<%= hike.trail %>+<%= hike.city %>" target="_blank" role="button" class="btn btn-secondary"><%= hike.trail %></a></td>
                 <td><a href="https://www.google.com/search?q=+<%= hike.city %>+<%= hike.state %>" role="button" target="_blank" class="btn btn-primary"><%= hike.city %></a></td>
                 <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
-                <td><a href="#" role="button" class="btn btn-warning" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
+                <td><a href="#" role="button" class="btn btn-warning btn-sm" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
                 <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
                 <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
                 <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
@@ -122,7 +122,7 @@
                 <td><a href="https://www.google.com/search?q=+<%= hike.trail %>+<%= hike.city %>" target="_blank" role="button" class="btn btn-secondary"><%= hike.trail %></a></td>
                 <td><a href="https://www.google.com/search?q=+<%= hike.city %>+<%= hike.state %>" role="button" target="_blank" class="btn btn-primary"><%= hike.city %></a></td>
                 <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
-                <td><a href="#" role="button" class="btn btn-warning" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
+                <td><a href="#" role="button" class="btn btn-warning btn-sm" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
                 <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
                 <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
                 <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>

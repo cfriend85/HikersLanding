@@ -107,6 +107,7 @@
 
 .hike_head{
     display: flex;
+    color: white;
     justify-content: space-between;
     padding: 10px;
     border-bottom: solid 5px black;
@@ -162,5 +163,9 @@ background: radial-gradient(circle, rgba(56,191,14,0.8267682072829132) 0%, rgba(
 
 
 #hike_changer{
-    margin-left: 170px;
+    margin: 15px 0px 0px 170px;
+}
+
+#join_hikes{
+    margin: 25px 0px 0px 215px;
 }

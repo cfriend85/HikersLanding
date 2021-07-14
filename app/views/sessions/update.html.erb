@@ -28,6 +28,16 @@
             <input type="submit" value="Commit Changes" class="btn btn-warning" style="margin: 10px 0px 0px 150px;">
         </form>
     </div>
+        <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px; vertical-align: top;">
+        <div class="card-header">Your Past Hikes</div>
+        <% @past_hikes.each do |hike| %>
+            <% if hike.hike_date < @today %>
+            <div class="list-group">
+                <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-secondary"><%= hike.description %></a>
+            </div>
+        <% end %>
+        <% end %>
+        </div>
     <% else %>
     <div class="jumbotron">
         <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem;">
@@ -41,6 +51,16 @@
                             </div>
                         <% end %>
                 </div>
+        </div>
+                <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px; vertical-align: top;">
+        <div class="card-header"><%= @user.first_name %>'s Past Hikes</div>
+        <% @past_hikes.each do |hike| %>
+            <% if hike.hike_date < @today %>
+            <div class="list-group">
+                <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-secondary"><%= hike.description %></a>
+            </div>
+        <% end %>
+        <% end %>
         </div>
 </div>
 <% end %>

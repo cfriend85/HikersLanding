@@ -24,6 +24,8 @@ class SessionsController < ApplicationController
 
         def update
             @user = User.find(params[:id])
+            @today = Date.today()
+            @past_hikes = Hike.all.where(users_joined:@user)
         end
 
         def update_user 
