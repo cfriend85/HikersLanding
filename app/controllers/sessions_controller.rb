@@ -1,17 +1,17 @@
 class SessionsController < ApplicationController
     skip_before_action :require_login
     def new 
-        user = User.create(user_params)
-            if user.valid?
-                session[:user_id] = user.id 
+        @user = User.create(user_params)
+            if @user.valid?
+                session[:user_id] = @user.id 
                 redirect_to '/dashboard'
             else
-                flash[:errors] = user.errors.full_messages
+                flash[:errors] = @user.errors.full_messages
                 redirect_to '/'
             end
         end
     
-        def show 
+    def show 
         @user = User.find_by_email(user_params[:email]).try(:authenticate, user_params[:password])
             if @user
                 session[:user_id] = @user.id
@@ -22,13 +22,13 @@ class SessionsController < ApplicationController
             end
         end
 
-        def update
-            @user = User.find(params[:id])
-            @today = Date.today()
-            @past_hikes = Hike.all.where(users_joined:@user)
-        end
+    def update
+        @user = User.find(params[:id])
+        @today = Date.today()
+        @past_hikes = Hike.all.where(users_joined:@user)
+    end
 
-        def update_user 
+    def update_user 
         @user = User.find(params[:id])
         @user.update(user_params)
             if @user.valid?

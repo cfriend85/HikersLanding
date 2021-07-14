@@ -8,14 +8,14 @@ class HikesController < ApplicationController
     end
 
     def create
-    @hike = Hike.create(hike_params)
-        if @hike.valid?
-            join = Join.create(user_id:current_user.id, hike_id: @hike.id)
-            redirect_to "/show/hike/#{@hike.id}"
-        else
-            flash[:errors] = @hike.errors.full_messages
-            redirect_to '/dashboard'
-        end
+        @hike = Hike.create(hike_params)
+            if @hike.valid?
+                join = Join.create(user_id:current_user.id, hike_id: @hike.id)
+                redirect_to "/show/hike/#{@hike.id}"
+            else
+                flash[:errors] = @hike.errors.full_messages
+                redirect_to '/dashboard'
+            end
     end
 
     def show
@@ -39,13 +39,13 @@ class HikesController < ApplicationController
     def update_hike
         @hike = Hike.find(params[:id])
         @hike.update(hike_params)
-        if @hike.valid?
-            @hike.save
-            redirect_to "/show/hike/#{@hike.id}"
-        else
-            flash[:errors] = @hike.errors.full_messages
-            redirect_to "/edit/#{@hike.id}"
-        end
+            if @hike.valid?
+                @hike.save
+                redirect_to "/show/hike/#{@hike.id}"
+            else
+                flash[:errors] = @hike.errors.full_messages
+                redirect_to "/edit/#{@hike.id}"
+            end
     end
 
     def destroy
