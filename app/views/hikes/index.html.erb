@@ -3,144 +3,144 @@
     <h1 class="display-3" style="color: white">Welcome, <%= current_user.first_name %>!</h1>
         <div class="nav_buttons">
             <a href="/show/<%= current_user.id %>" role="button" class="btn btn-primary" id="account">Edit your Account</a>
-                <a href="/guide" role="button" class="btn btn-warning" id="guide">Hiking Guide</a>
-                    <a href="/find/hikes" role="button" class="btn btn-success" id="new_hike">Find a new Hike</a>
-                        <a href="/logout" role="button" class="btn btn-danger" id="logout_head">Logout</a>
-                            </div>
-                                </div>
-                                    <div class="main">
-                                        <div class="card">
-                                            <img class="card-img-top" src="https://menla.org/wp-content/uploads/2018/03/Hiking-Trail-No-People-2-800x800.jpg" alt="Card image cap">
-                                        <div class="card-body" style="background-color:black; opacity: 0.75">
-                                    <h4 class="card-title">Create a new Hike!</h4>
-                                <% if flash[:errors] %>
-                            <% flash[:errors].each do |e| %>
-                        <p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
+            <a href="/guide" role="button" class="btn btn-warning" id="guide">Hiking Guide</a>
+            <a href="/find/hikes" role="button" class="btn btn-success" id="new_hike">Find a new Hike</a>
+            <a href="/logout" role="button" class="btn btn-danger" id="logout_head">Logout</a>
+        </div>
+        </div>
+            <div class="main">
+                <div class="card">
+                    <img class="card-img-top" src="https://menla.org/wp-content/uploads/2018/03/Hiking-Trail-No-People-2-800x800.jpg" alt="Card image cap">
+                <div class="card-body" style="background-color:black; opacity: 0.75">
+                    <h4 class="card-title">Create a new Hike!</h4>
+                    <% if flash[:errors] %>
+                        <% flash[:errors].each do |e| %>
+                            <p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
+                        <% end %>
                     <% end %>
-                <% end %>
             <form action="/create/hike" method="POST" id="hike_form">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="hike[user_id]" value="<%= current_user.id %>">
-<div class="form-group row">
-    <label>Hike Description</label>
-        <div class="col-sm-20">
-            <input type="text" maxlength="40" class="form-control" name="hike[description]" placeholder="Describe your hike">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="hike[user_id]" value="<%= current_user.id %>">
+        <div class="form-group row">
+            <label>Hike Description</label>
+                <div class="col-sm-20">
+                    <input type="text" maxlength="40" class="form-control" name="hike[description]" placeholder="Describe your hike">
                 </div>
-                    </div>
-                        <label>Trail</label>
-                            <div class="col-sm-20">
-                                <input type="text" class="form-control" name="hike[trail]" placeholder="Trail this hike will take">
-                                    </div>
-                                        <label>City</label>
-                                    <div class="col-sm-20">
-                                <input type="text" class="form-control" name="hike[city]" placeholder="City the trail is in">
-                            </div>
-                        <label>State</label>
-                    <div class="col-sm-20">
-                <input type="text" class="form-control" name="hike[state]" placeholder="State the trail is in">
-            </div>
-        <label>Date</label>
-    <div class="col-sm-20">
-<input type="date" class="form-control" name="hike[hike_date]" placeholder="Date of your hike">
-    </div>
-        <label>Time</label>
-            <div class="col-sm-20">
-                <input type="text" class="form-control" name="hike[time]" placeholder="Time the hike will begin">
-                    </div>
-                        <label>Picture</label>
-                            <div class="col-sm-20">
-                                <input type="text" class="form-control" name="hike[image_url]" placeholder="Please copy a valid link to a picture of your hike">
-                                    </div><br>
-                                        <div class="form-group row">
-                                            <div class="col-sm-10 offset-sm-2">
-                                        <button type="submit" class="btn btn-success" style="margin-left: 50px">Create Hike!</button>
-                                    </div>
-                                </div><br>
-                            </form>
+        </div>
+            <label>Trail</label>
+                <div class="col-sm-20">
+                    <input type="text" class="form-control" name="hike[trail]" placeholder="Trail this hike will take">
                         </div>
+                            <label>City</label>
+                                <div class="col-sm-20">
+                                <input type="text" class="form-control" name="hike[city]" placeholder="City the trail is in">
+                                </div>
+                            <label>State (abbrev)</label>
+                <div class="col-sm-20">
+                    <input type="text" class="form-control" name="hike[state]" placeholder="CO, CA, UT, ND">
+                </div>
+                    <label>Date</label>
+                    <div class="col-sm-20">
+                        <input type="date" class="form-control" name="hike[hike_date]" placeholder="Date of your hike">
                     </div>
+                    <label>Time</label>
+                    <div class="col-sm-20">
+                        <input type="text" class="form-control" name="hike[time]" placeholder="Time the hike will begin">
+                    </div>
+                    <label>Picture</label>
+                    <div class="col-sm-20">
+                        <input type="text" class="form-control" name="hike[image_url]" placeholder="Please copy a valid link to a picture of your hike">
+                    </div><br>
+                    <div class="form-group row">
+                        <div class="col-sm-10 offset-sm-2">
+                            <button type="submit" class="btn btn-success" style="margin-left: 50px">Create Hike!</button>
+                        </div>
+                    </div><br>
+                    </form>
+                    </div>
+                </div>
                 <div class="hike_table">
-            <table class="table table-hover">
-        <thead>
-    <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Your Current Hikes</h2>
-<tr id="table_headers">
-    <th>Description</th>
-        <th>Trail</th>
-            <th>City</th>
-                <th>State</th>
-                    <th>Date</th>
-                        <th>Time</th>
+                    <table class="table table-hover">
+                        <thead>
+                        <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Your Current Hikes</h2>
+                        <tr id="table_headers">
+                            <th>Description</th>
+                            <th>Trail</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Date</th>
+                            <th>Time</th>
                             <th>Photo</th>
-                                <th>Weather</th>
-                                    <th>Creator</th>
-                                <th>Actions</th>
-                            </tr>
+                            <th>Weather</th>
+                            <th>Creator</th>
+                            <th>Actions</th>
+                        </tr>
                         </thead>
                     <% @future_hikes.each do |hike| %>
-                <% if current_user.id == hike.user.id %>
-            <tbody>
-        <tr id="table_data">
-    <td><a id="table_data" href="/show/hike/<%= hike.id %>" role="button" class="btn btn-warning"><%= hike.description %></a></td>
-<td><a href="https://www.google.com/search?q=+<%= hike.trail %>+<%= hike.city %>" target="_blank" role="button" class="btn btn-secondary"><%= hike.trail %></a></td>
-    <td><a href="https://www.google.com/search?q=+<%= hike.city %>+<%= hike.state %>" role="button" target="_blank" class="btn btn-primary"><%= hike.city %></a></td>
-        <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
-            <td><a href="#" role="button" class="btn btn-warning btn-sm" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
-                <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
-                    <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
+                        <% if current_user.id == hike.user.id %>
+                    <tbody>
+                    <tr id="table_data">
+                        <td><a id="table_data" href="/show/hike/<%= hike.id %>" role="button" class="btn btn-warning"><%= hike.description %></a></td>
+                        <td><a href="https://www.google.com/search?q=+<%= hike.trail %>+<%= hike.city %>" target="_blank" role="button" class="btn btn-secondary"><%= hike.trail %></a></td>
+                        <td><a href="https://www.google.com/search?q=+<%= hike.city %>+<%= hike.state %>" role="button" target="_blank" class="btn btn-primary"><%= hike.city %></a></td>
+                        <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
+                        <td><a href="#" role="button" class="btn btn-warning btn-sm" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
+                        <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
+                        <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
                         <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
-                            <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
-                                <% if not hike.users_joined.include?(current_user) %>
-                                    <td><a href="/join/<%= hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a></td>
-                                <% else %>
-                            <td><a href="/unjoin/<%= hike.id %>" role="button" class="btn btn-danger" data-method="delete">Un-Join</a></td>
+                        <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
+                            <% if not hike.users_joined.include?(current_user) %>
+                                <td><a href="/join/<%= hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a></td>
+                            <% else %>
+                                <td><a href="/unjoin/<%= hike.id %>" role="button" class="btn btn-danger" data-method="delete">Un-Join</a></td>
+                            <% end %>
+                        <td>
                         <% end %>
-                    <td>
+                    </tbody>
                 <% end %>
-            </tbody>
-        <% end %>
-    </table>
-<table class="table table-hover">
-    <thead>
-        <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Upcomming Hikes You've Joined</h2>
-            <tr id="table_headers">
-                <th>Description</th>
-                    <th>Trail</th>
+            </table>
+            <table class="table table-hover">
+                <thead>
+                    <h2 style="color: ivory; font-weight:bolder; margin-left: 10px;">Upcomming Hikes You've Joined</h2>
+                    <tr id="table_headers">
+                        <th>Description</th>
+                        <th>Trail</th>
                         <th>City</th>
-                            <th>State</th>
-                                <th>Date</th>
-                                    <th>Time</th>
-                                        <th>Photo</th>
-                                            <th>Weather</th>
-                                        <th>Creator</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                        <% @hikes_joined.each do |hike| %>
+                        <th>State</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Photo</th>
+                        <th>Weather</th>
+                        <th>Creator</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <% @hikes_joined.each do |hike| %>
                     <% if hike.hike_date > @today %>
-                <% if hike.users_joined.include?(current_user) %>
-            <tbody>
-        <tr id="table_data">
-    <td><a id="table_data" href="/show/hike/<%= hike.id %>" role="button" class="btn btn-warning"><%= hike.description %></a></td>
-<td><a href="https://www.google.com/search?q=+<%= hike.trail %>+<%= hike.city %>" target="_blank" role="button" class="btn btn-secondary"><%= hike.trail %></a></td>
-    <td><a href="https://www.google.com/search?q=+<%= hike.city %>+<%= hike.state %>" role="button" target="_blank" class="btn btn-primary"><%= hike.city %></a></td>
-        <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
-            <td><a href="#" role="button" class="btn btn-warning btn-sm" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
-                <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
-                    <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
+                        <% if hike.users_joined.include?(current_user) %>
+                    <tbody>
+                    <tr id="table_data">
+                        <td><a id="table_data" href="/show/hike/<%= hike.id %>" role="button" class="btn btn-warning"><%= hike.description %></a></td>
+                        <td><a href="https://www.google.com/search?q=+<%= hike.trail %>+<%= hike.city %>" target="_blank" role="button" class="btn btn-secondary"><%= hike.trail %></a></td>
+                        <td><a href="https://www.google.com/search?q=+<%= hike.city %>+<%= hike.state %>" role="button" target="_blank" class="btn btn-primary"><%= hike.city %></a></td>
+                        <td><a href="https://www.google.com/search?q=+<%= hike.state %>" role="button" target="_blank" class="btn btn-info"><%= hike.state %></a></td>
+                        <td><a href="#" role="button" class="btn btn-warning btn-sm" id="table_data"><%= hike.hike_date.strftime("%m/%d/%Y") %></a></td>
+                        <td><a href="#" class="btn btn-dark"><%= hike.time %></a></td>
+                        <td><img id="hike" src="<%= hike.image_url %>" alt="<%= hike.description %>" style="border: solid 4px black;"></td>
                         <td><a href="https://www.google.com/search?q=<%= hike.city %>+weather" target="_blank" role="button" class="btn btn-primary">View Weather</a></td>
-                            <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
-                                <% if not hike.users_joined.include?(current_user) %>
-                                    <td><a href="/join/<%= hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a></td>
-                                <% else %>
-                            <td><a href="/unjoin/<%= hike.id %>" role="button" class="btn btn-danger" data-method="delete">Cancel</a></td>
-                        <% end %>
-                    <td>
-                </tbody>
+                        <td><a href="/show/<%= hike.user.id %>" class="btn btn-dark" role="button"><%= hike.user.first_name %> <%= hike.user.last_name %></a></td>
+                            <% if not hike.users_joined.include?(current_user) %>
+                                <td><a href="/join/<%= hike.id %>" role="button" class="btn btn-success" data-method="POST">Join</a></td>
+                            <% else %>
+                                <td><a href="/unjoin/<%= hike.id %>" role="button" class="btn btn-danger" data-method="delete">Cancel</a></td>
+                            <% end %>
+                        <td>
+                    </tbody>
+                    <% end %>
+                <% end %>
             <% end %>
-        <% end %>
-<% end %>
-    </table>
-        </div>
+        </table>
+    </div>
 
 
 

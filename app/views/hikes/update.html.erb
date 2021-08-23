@@ -11,60 +11,60 @@
         <h1 class="display-3"><%= @hike.trail %></h1>
             <div>
                 <a href="/dashboard" role="button" class="btn btn-warning">Home</a>
-                    <a href="/logout" role="button" class="btn btn-danger">Logout</a>
-                        </div>
-                            </div>
-                                <div class="jumbotron" id="hike_page">
-                                    <div id="hike_details">
-                                        <h1 class="display-6"><%= @hike.description %></h1>
-                                            <h5 class="lead" id="hike_page_lead"><%= @hike.city %>, <%= @hike.state %></h5>
-                                        <h5 class="lead" id="hike_page_lead"><%= @hike.hike_date.strftime("%m/%d/%Y") %></h5>
-                                    <h5 class="lead" id="hike_page_lead"><%= @hike.time %></h5>
-                                </div>
-                            <div id="jumbo_foot">
-                        <hr class="my-2">
-                    <h1><img src="<%= @hike.image_url %>" class="trail_pic" alt="Picture of the hike"></h1> 
-                <div style="margin-left: 250px;">
-            <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px">
-        <% if flash[:errors] %>
-    <% flash[:errors].each do |e| %>
-<p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
-    <% end %>
-        <% end %>
-            <form action="/edit/hike/<%= @hike.id %>" method="POST">
-                <input type="hidden" name="_method" value="patch">
-                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <a href="/logout" role="button" class="btn btn-danger">Logout</a>
+            </div>
+    </div>
+    <div class="jumbotron" id="hike_page">
+        <div id="hike_details">
+            <h1 class="display-6"><%= @hike.description %></h1>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.city %>, <%= @hike.state %></h5>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.hike_date.strftime("%m/%d/%Y") %></h5>
+            <h5 class="lead" id="hike_page_lead"><%= @hike.time %></h5>
+        </div>
+        <div id="jumbo_foot">
+            <hr class="my-2">
+                <h1><img src="<%= @hike.image_url %>" class="trail_pic" alt="Picture of the hike"></h1> 
+                    <div style="margin-left: 250px;">
+                        <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px">
+                    <% if flash[:errors] %>
+                        <% flash[:errors].each do |e| %>
+                            <p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
+                        <% end %>
+                    <% end %>
+                    <form action="/edit/hike/<%= @hike.id %>" method="POST">
+                        <input type="hidden" name="_method" value="patch">
+                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                         <div class="form-group">
                             <label for="formGroupExampleInput">Description</label>
-                                <input type="text" class="form-control" name="hike[description]" value="<%= @hike.description %>">
-                                    </div>
-                                        <div class="form-group">
-                                    <label for="formGroupExampleInput">Trail</label>
-                                <input type="text" class="form-control" name="hike[trail]" value="<%= @hike.trail %>">
-                            </div>
+                            <input type="text" class="form-control" name="hike[description]" value="<%= @hike.description %>">
+                        </div>
                         <div class="form-group">
-                    <label for="formGroupExampleInput">City</label>
-                <input type="text" class="form-control" name="hike[city]" value="<%= @hike.city %>">
-            </div>
-        <div class="form-group">
-    <label for="formGroupExampleInput">State</label>
-<input type="text" class="form-control" name="hike[state]" value="<%= @hike.state %>">
-    </div>
-        <div class="form-group">
-            <label for="formGroupExampleInput">Date</label>
-                <input type="date" class="form-control" name="hike[hike_date]" value="<%= @hike.hike_date %>">
-                    </div>
+                            <label for="formGroupExampleInput">Trail</label>
+                            <input type="text" class="form-control" name="hike[trail]" value="<%= @hike.trail %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">City</label>
+                            <input type="text" class="form-control" name="hike[city]" value="<%= @hike.city %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">State</label>
+                            <input type="text" class="form-control" name="hike[state]" value="<%= @hike.state %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Date</label>
+                            <input type="date" class="form-control" name="hike[hike_date]" value="<%= @hike.hike_date %>">
+                        </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput">Time</label>
-                                <input type="text" class="form-control" name="hike[time]" value="<%= @hike.time %>">
-                                    </div>
-                                <div class="form-group">
+                            <input type="text" class="form-control" name="hike[time]" value="<%= @hike.time %>">
+                        </div>
+                        <div class="form-group">
                             <label for="formGroupExampleInput">Photo</label>
-                        <input type="text" class="form-control" name="hike[image_url]" value="<%= @hike.image_url %>">
-                    </div>
-                <input type="submit" value="Commit Changes" class="btn btn-warning" style="margin: 10px 0px 0px 150px;">
-            </form>
-        </div>
-    </div>
-</body>
+                            <input type="text" class="form-control" name="hike[image_url]" value="<%= @hike.image_url %>">
+                        </div>
+                            <input type="submit" value="Commit Changes" class="btn btn-warning" style="margin: 10px 0px 0px 150px;">
+                    </form>
+                </div>
+            </div>
+    </body>
     </html>

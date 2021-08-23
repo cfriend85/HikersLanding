@@ -5,75 +5,75 @@
                 <% if flash[:errors] %>
                     <% flash[:errors].each do |e| %>
                         <p style="background-color: rgb(146, 0, 0);color: rgb(153, 153, 0);font-weight: 800;"><%= e %></p>
-                            <% end %>
-                                <% end %>
-                                    <form action="/edit/<%= @user.id %>" method="POST">
-                                        <input type="hidden" name="_method" value="patch">
-                                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                                <div class="form-group">
-                            <label for="formGroupExampleInput">First Name</label>
-                        <input type="text" class="form-control" name="user[first_name]" value="<%= @user.first_name %>">
+                    <% end %>
+                <% end %>
+            <form action="/edit/<%= @user.id %>" method="POST">
+                <input type="hidden" name="_method" value="patch">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">First Name</label>
+                    <input type="text" class="form-control" name="user[first_name]" value="<%= @user.first_name %>">
                     </div>
                 <div class="form-group">
-            <label for="formGroupExampleInput">Last Name</label>
-        <input type="text" class="form-control" name="user[last_name]" value="<%= @user.last_name %>">
-    </div>
-<div class="form-group">
-    <label for="formGroupExampleInput">Email</label>
-        <input type="text" class="form-control" name="user[email]" value="<%= @user.email %>">
-            </div>
+                    <label for="formGroupExampleInput">Last Name</label>
+                    <input type="text" class="form-control" name="user[last_name]" value="<%= @user.last_name %>">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Email</label>
+                    <input type="text" class="form-control" name="user[email]" value="<%= @user.email %>">
+                </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Password</label>
-                        <input type="password" class="form-control" name="user[password]" placeholder="Password">
-                            </div>
-                                <div class="form-group">
-                            <label for="formGroupExampleInput">Confirm Password</label>
-                        <input type="password" class="form-control" name="user[password_confirmation]" placeholder="Confirm your Password">
-                    </div>
-                <input type="submit" value="Commit Changes" class="btn btn-warning" style="margin: 10px 0px 0px 150px;">
+                    <input type="password" class="form-control" name="user[password]" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Confirm Password</label>
+                    <input type="password" class="form-control" name="user[password_confirmation]" placeholder="Confirm your Password">
+                </div>
+                    <input type="submit" value="Commit Changes" class="btn btn-warning" style="margin: 10px 0px 0px 150px;">
             </form>
         </div>
-    <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px; vertical-align: top;">
-<div class="card-header">Your Past Hikes</div>
-    <% @past_hikes.each do |hike| %>
-        <% if hike.hike_date < @today %>
-            <div class="list-group">
-                <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-secondary"><%= hike.description %></a>
-                    </div>
-                        <% end %>
-                            <% end %>
-                                </div>
-                        <% else %>
-                    <div class="jumbotron">
-                <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem;">
-            <div class="card-header"><%= @user.first_name %> <%= @user.last_name %></div>
-        <div class="card-header"><%= @user.email %></div>
-    <div class="card-body">
-<h4 class="card-title">Users Hikes:</h4>
-    <% @user.hikes.each do |hike| %>
-        <% if hike.hike_date > @today %>
-            <div class="list-group" style="width:300px; padding: 5px;">
-                <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-dark"><%= hike.description %></a>
-                    </div>
-                        <% end %>
-                            <% end %>
-                                </div>
-                            </div>
-                        <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px; vertical-align: top;">
-                    <div class="card-header"><%= @user.first_name %>'s Past Hikes</div>
+        <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px; vertical-align: top;">
+            <div class="card-header">Your Past Hikes</div>
                 <% @past_hikes.each do |hike| %>
-            <% if hike.hike_date < @today %>
-        <div class="list-group">
-    <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-secondary"><%= hike.description %></a>
-</div>
-    <% end %>
-        <% end %>
+                    <% if hike.hike_date < @today %>
+                    <div class="list-group">
+                        <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-secondary"><%= hike.description %></a>
+                    </div>
+                    <% end %>
+                <% end %>
             </div>
+                <% else %>
+                    <div class="jumbotron">
+                    <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem;">
+                        <div class="card-header"><%= @user.first_name %> <%= @user.last_name %></div>
+                            <div class="card-header"><%= @user.email %></div>
+                        <div class="card-body">
+                            <h4 class="card-title">Users Hikes:</h4>
+                        <% @user.hikes.each do |hike| %>
+                    <% if hike.hike_date > @today %>
+                        <div class="list-group" style="width:300px; padding: 5px;">
+                            <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-dark"><%= hike.description %></a>
+                        </div>
+                    <% end %>
+                    <% end %>
+            </div>
+            </div>
+            <div class="card text-white bg-dark mb-3 d-inline-block" style="max-width: 100rem; padding:20px; vertical-align: top;">
+                <div class="card-header"><%= @user.first_name %>'s Past Hikes</div>
+                    <% @past_hikes.each do |hike| %>
+                        <% if hike.hike_date < @today %>
+                        <div class="list-group">
+                            <a href="/show/hike/<%= hike.id %>" class="list-group-item list-group-item-action list-group-item-secondary"><%= hike.description %></a>
+                        </div>
+                        <% end %>
+                    <% end %>
+                    </div>
                 </div>
                     <% end %>
-                        <div style="margin-left: 125px;">
-                            <a href="/dashboard" role="button" class="btn btn-warning">Home</a>
-                        <a href="/logout" role="button" class="btn btn-danger">Logout</a>
-                    </div>
+                <div style="margin-left: 125px;">
+                    <a href="/dashboard" role="button" class="btn btn-warning">Home</a>
+                    <a href="/logout" role="button" class="btn btn-danger">Logout</a>
                 </div>
-            </body>
+            </div>
+        </body>
